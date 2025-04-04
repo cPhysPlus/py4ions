@@ -1,12 +1,12 @@
-.. py4ions documentation...
+.. py4radiation documentation...
 
-Welcome to py4ions!
+Welcome to py4radiation!
 ============================================
 
 .. toctree::
    :maxdepth: 2
 
-   py4ions
+   py4radiation
    installation
    annotated_example
    frequently_asked_questions

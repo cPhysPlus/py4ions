@@ -5,7 +5,7 @@ import sys
 # Path for extensions
 sys.path.insert(0, os.path.abspath('../..'))
 
-project = 'py4ions'
+project = 'py4radiation'
 copyright = '2025, Yachay Tech University'
 author = 'D. Villarruel, W. E. Banda-Barragan, B. Casavecchia'
 
