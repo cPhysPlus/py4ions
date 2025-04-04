@@ -1,4 +1,4 @@
-# Import librariea
+# Import libraries
 import os
 import sys
 
