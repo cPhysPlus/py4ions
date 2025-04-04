@@ -1,2 +1,2 @@
-# py4shocks/__init__.py
-from . import test_module
+# py4radiation/__init__.py
+from .simload import simload
