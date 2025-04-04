@@ -1,7 +1,7 @@
-The py4shocks Module
+The py4ions Module
 ===========
 
-.. automodule:: py4shocks
+.. automodule:: py4ions
    :members:
    :undoc-members:
    :show-inheritance:
@@ -9,7 +9,7 @@ The py4shocks Module
 Test Module
 -----------
 
-.. automodule:: py4shocks.test_module
+.. automodule:: py4ions.test_module
    :members:
    :undoc-members:
    :show-inheritance:
