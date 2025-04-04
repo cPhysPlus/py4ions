@@ -10,3 +10,5 @@ from .simload import simload
 from radiation.prepare_sed import SED
 from radiation.parfiles import ParameterFiles
 from synthetic.observables import SyntheticObservables
+
+__all__ = ['main', 'simload']

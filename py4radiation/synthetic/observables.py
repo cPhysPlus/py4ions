@@ -29,14 +29,17 @@ class SyntheticObservables():
 
         Set of ions for analysis
 
-    :unitsfile: string
+    :units: numpy array
 
-        Path to file containing units data
+        Units array in the following order:
+        [0] density
+        [1] pressure
+        [2] velocity
+        [3] length
 
     """
 
-    def __init__(self, fields, shape, ions, unitsfile):
-        units = pd.read_csv(unitsfile, sep=r'\s+', header=None)[1]
+    def __init__(self, fields, shape, ions, units):
 
         mm = 1.660e-24   # 1 amu
         mu = 6.724418e-1 
@@ -86,14 +89,14 @@ class SyntheticObservables():
         else:
             os.mkdir(obs_path)
 
-    def column_densities(self):
+    def get_column_densities(self):
         cols = ColumnDensity(self.ds, self.shape, self.ions)
         cols.projXZ()
         cols.projYZ()
 
         print('Column density maps DONE')
 
-    def mock_spectra(self):
+    def get_mock_spectra(self):
         spectra = MockSpectra(self.ds, self.shape, self.ions)
 
         rays = []
