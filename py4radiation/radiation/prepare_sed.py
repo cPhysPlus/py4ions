@@ -25,7 +25,7 @@ class SED():
 
     :z: string
 
-        Redshift (for ionbalance use 0.0000e+00 and 0.0001e+00)
+        Redshift (use 0.0000e+00 as format)
 
     :age: int, sb99 format, optional
 
