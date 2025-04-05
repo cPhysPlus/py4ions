@@ -21,9 +21,12 @@ class Diagnose():
         y = np.linspace(box_y[0], box_y[1], shape[1])
         z = np.linspace(box_z[0], box_z[1], shape[2])
 
+        self.j = [x, y, z]
+
         self.j3D = [x.reshape(-1, 1, 1), y.reshape(1, -1, 1), z.reshape(1, 1, -1)]
 
-        self.dV = ((np.max(x) - np.min(x)) / shape[0])**3
+        dx = np.max(x) - np.min(x) / shape[0]
+        self.dV = dx**3
 
         rho, tr1, _, _, _, _ = fields_sim1
 

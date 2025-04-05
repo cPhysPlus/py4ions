@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import sys
 import argparse
 from configparser import ConfigParser
 
@@ -52,6 +53,11 @@ def main():
     elif mode == 1:
         print('SYNTHETIC OBSERVABLES mode')
 
+        if os.path.isdir('./observables/'):
+            None
+        else:
+            os.mkdir('./observables/')
+
         simpath = conf['SYNTHETIC']['simpath']
         simfile = simpath + conf['SYNTHETIC']['simfile']
         ions    = pd.read_csv(conf['SYNTHETIC']['ionsfile'], sep=r'\s+', header=None).to_numpy()
@@ -65,7 +71,13 @@ def main():
     elif mode == 2:
         print('CLOUDS mode')
 
-        simpath = conf['CLOUDS']['simpath']
+        if os.path.isdir('./clouds/'):
+            None
+        else:
+            os.mkdir('./clouds/')
+
+        simpath  = conf['CLOUDS']['simpath']
+        sim_name = conf['CLOUDS']['simname']
         box_x   = np.array(conf['CLOUDS']['box_x'].split()).astype(int)
         box_y   = np.array(conf['CLOUDS']['box_y'].split()).astype(int)
         box_z   = np.array(conf['CLOUDS']['box_z'].split()).astype(int)
@@ -113,7 +125,20 @@ def main():
 
             diagnostics.get_cuts(fields, sinnums[k])
 
-            print(f'Simulation {k + 1} out of 81 DONE')
+            print(f'Simulation {k + 1} out of 81 done')
 
-        
+        nfile = './clouds/' + sim_name + '_diagnostics.dat'
+        stdout = sys.stdout
+        with open(nfile, 'w') as f:
+            sys.stdout = f
+            for m in range(81):
+                print('{0:.7E}'.format(n_list[m]) + '  ' + '{0:.7E}'.format(T_list[m]) + '  ' + '{0:.7E}'.format(fmix_l[m]) + '  ' + '{0:.7E}'.format(ycm_ls[m]) + '  ' + '{0:.7E}'.format(xsg_ls[m]) + '  ' + '{0:.7E}'.format(ysg_ls[m]) + '  ' + '{0:.7E}'.format(zsg_ls[m]) + '  ' + '{0:.7E}'.format(vxsgls[m]) + '  ' + '{0:.7E}'.format(vysgls[m]) + '  ' + '{0:.7E}'.format(vzsgls[m]))
+            
+            sys.stdout = stdout
+        print('DIAGNOSE and CUTS done')
 
+    else:
+        raise Exception('MODES: (1) radiation (2) synthetic (3) clouds')
+    
+if __name__ == '__main__':
+    main()

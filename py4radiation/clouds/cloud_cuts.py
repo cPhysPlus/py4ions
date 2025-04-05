@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import os
 import numpy as np
 
 class CloudCuts():
@@ -17,12 +18,20 @@ class CloudCuts():
 
     """
 
-    def __init__(self, simnum, fields, shape):
+    def __init__(self, fields, shape, nsim):
+        self.nsim = nsim
         rho, _, _, vx, vy, vz = fields
         self.rho = rho
         self.v   = np.sqrt(vx**2 + vy**2 + vz**2)
 
         self.cut = int((shape[2] / 2) - 1)
+
+        self.clouds = './clouds/'
+
+        if os.path.isdir('./clouds/'):
+            None
+        else:
+            os.mkdir('./clouds/')
 
     def get_ncuts(self):
         """
@@ -36,7 +45,7 @@ class CloudCuts():
         n = self.rho / (mm * mu)
         nz0 = n[:, :, self.cut]
 
-        nfile = 'ncut_' + self.nsim + '.dat'
+        nfile = self.clouds + 'ncut_' + self.nsim + '.dat'
         n_arr = '\n'.join(['\t'.join(map(str, row)) for row in nz0])
         with open(nfile, 'w') as fn:
             fn.write(n_arr)
@@ -50,7 +59,7 @@ class CloudCuts():
         v = self.v
         vz0 = v[:, :, self.cut]
 
-        vfile = 'vcut_' + self.nsim + '.dat'
+        vfile = self.clouds + 'vcut_' + self.nsim + '.dat'
         v_arr = '\n'.join(['\t'.join(map(str, row)) for row in vz0])
         with open(vfile, 'w') as fv:
             fv.write(v_arr)
