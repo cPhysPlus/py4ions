@@ -90,6 +90,11 @@ class SyntheticObservables():
             os.mkdir(obs_path)
 
     def get_column_densities(self):
+        """
+
+        Get down-the-barrel and transverse column density maps
+        
+        """
         cols = ColumnDensity(self.ds, self.shape, self.ions)
         cols.projXZ()
         cols.projYZ()
@@ -97,6 +102,11 @@ class SyntheticObservables():
         print('Column density maps DONE')
 
     def get_mock_spectra(self):
+        """
+
+        Get absorption spectra for three default rays
+        
+        """
         spectra = MockSpectra(self.ds, self.shape, self.ions)
 
         rays = []
