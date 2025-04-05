@@ -1,7 +1,7 @@
-The py4ions Module
+The py4radiation Module
 ===========
 
-.. automodule:: py4ions
+.. automodule:: py4radiation
    :members:
    :undoc-members:
    :show-inheritance:
@@ -9,7 +9,7 @@ The py4ions Module
 Test Module
 -----------
 
-.. automodule:: py4ions.test_module
+.. automodule:: py4radiation.test_module
    :members:
    :undoc-members:
    :show-inheritance:
